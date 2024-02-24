@@ -11,6 +11,11 @@ public class Developer {
     public Developer() {
     }
 
+    public Developer(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
     public Developer(Integer idStudent, String name, String phone) {
         this.idStudent = idStudent;
         this.name = name;

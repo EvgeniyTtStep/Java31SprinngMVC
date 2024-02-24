@@ -14,9 +14,17 @@
 <body>
 
 <c:forEach var="developer" items="${developers}">
-    <c:out value="${developer.name} ${developer.phone}"/> <br>
+    <c:if test="${developer.phone.equals('333')}">
+        <div style="color: aqua">${developer.name} ${developer.phone} <a href="/single/developer/phone=${developer.phone}">developer</a></div>
+    </c:if>
+    <c:if test="${!developer.phone.equals('333')}">
+        <div style="color: coral">${developer.name} ${developer.phone} <a href="/single/developer/phone=${developer.phone}">developer</a></div>
+    </c:if>
 </c:forEach>
 
+<br>
+
+<a href="/developer/form">Add developer</a>
 
 </body>
 </html>

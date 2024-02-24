@@ -6,12 +6,13 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Repository
-public class DeveloperDAO implements BaseEntity<Developer, Integer>{
+public class DeveloperDAO implements BaseEntity<Developer, Integer> {
 
 
-    List<Developer>developers = new ArrayList<>(
+    List<Developer> developers = new ArrayList<>(
             List.of(
                     new Developer(1, "Bob", "111"),
                     new Developer(2, "Tom", "222"),
@@ -23,7 +24,7 @@ public class DeveloperDAO implements BaseEntity<Developer, Integer>{
 
     @Override
     public void save(Developer developer) {
-
+        developers.add(developer);
     }
 
     @Override
@@ -43,6 +44,15 @@ public class DeveloperDAO implements BaseEntity<Developer, Integer>{
 
     @Override
     public Developer getById(Integer integer) {
+        return null;
+    }
+
+    public Developer getByPhone(String phone) {
+        for (Developer developer : developers) {
+            if (developer.getPhone().equals(phone)) {
+                return developer;
+            }
+        }
         return null;
     }
 }

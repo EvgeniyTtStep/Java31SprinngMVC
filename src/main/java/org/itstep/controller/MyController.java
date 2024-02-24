@@ -36,12 +36,7 @@ public class MyController {
         return "home";
     }
 
-    @GetMapping("/developers")
-    public String getAllDevelopers(Model model){
-        List<Developer> developersAll = developerDAO.getAll();
-        model.addAttribute("developers", developersAll);
-        return "developers";
-    }
+
 
 
 
