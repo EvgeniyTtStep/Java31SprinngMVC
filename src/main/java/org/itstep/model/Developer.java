@@ -2,7 +2,7 @@ package org.itstep.model;
 
 public class Developer {
 
-    private Integer idStudent;
+    private Integer idDeveloper;
 
     private String name;
 
@@ -16,18 +16,18 @@ public class Developer {
         this.phone = phone;
     }
 
-    public Developer(Integer idStudent, String name, String phone) {
-        this.idStudent = idStudent;
+    public Developer(Integer idDeveloper, String name, String phone) {
+        this.idDeveloper = idDeveloper;
         this.name = name;
         this.phone = phone;
     }
 
-    public Integer getIdStudent() {
-        return idStudent;
+    public Integer getIdDeveloper() {
+        return idDeveloper;
     }
 
-    public void setIdStudent(Integer idStudent) {
-        this.idStudent = idStudent;
+    public void setIdDeveloper(Integer idDeveloper) {
+        this.idDeveloper = idDeveloper;
     }
 
     public String getName() {

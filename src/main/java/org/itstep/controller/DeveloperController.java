@@ -1,6 +1,7 @@
 package org.itstep.controller;
 
 import org.itstep.dao.DeveloperDAO;
+import org.itstep.dao.hibernate.DeveloperHibernate;
 import org.itstep.model.Developer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,16 +13,18 @@ import java.util.List;
 @Controller
 public class DeveloperController {
 
-    private final DeveloperDAO developerDAO;
+
+
+    private final DeveloperHibernate developerHibernate;
 
     @Autowired
-    public DeveloperController(DeveloperDAO developerDAO) {
-        this.developerDAO = developerDAO;
+    public DeveloperController(DeveloperHibernate developerHibernate) {
+        this.developerHibernate = developerHibernate;
     }
 
     @GetMapping("/developers")
     public String getAllDevelopers(Model model) {
-        List<Developer> developersAll = developerDAO.getAll();
+        List<Developer> developersAll = developerHibernate.getAll();
         model.addAttribute("developers", developersAll);
         return "developers";
     }
@@ -41,14 +44,14 @@ public class DeveloperController {
 
     @PostMapping("/developer/form")
     public String postDeveloperForm(@ModelAttribute Developer developer) {
-        developerDAO.save(developer);
+        developerHibernate.save(developer);
         return "redirect:/developers";
     }
 
 
     @GetMapping("/single/developer/{phone}")
     public String getOne(@PathVariable String phone, Model model) {
-        Developer byPhone = developerDAO.getByPhone(phone);
+        Developer byPhone = developerHibernate.getByPhone(phone);
         model.addAttribute("dev", byPhone);
         System.out.println(byPhone.getName() + " " + byPhone.getPhone());
         return "developer";

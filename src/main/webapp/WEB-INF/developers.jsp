@@ -15,10 +15,10 @@
 
 <c:forEach var="developer" items="${developers}">
     <c:if test="${developer.phone.equals('333')}">
-        <div style="color: aqua">${developer.name} ${developer.phone} <a href="/single/developer/phone=${developer.phone}">developer</a></div>
+        <div style="color: aqua">${developer.name} ${developer.phone} <a href="/single/developer/${developer.phone}">developer</a></div>
     </c:if>
     <c:if test="${!developer.phone.equals('333')}">
-        <div style="color: coral">${developer.name} ${developer.phone} <a href="/single/developer/phone=${developer.phone}">developer</a></div>
+        <div style="color: coral">${developer.name} ${developer.phone} <a href="/single/developer/${developer.phone}">developer</a></div>
     </c:if>
 </c:forEach>
 
