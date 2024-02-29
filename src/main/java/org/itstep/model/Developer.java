@@ -2,19 +2,29 @@ package org.itstep.model;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.util.Set;
 
 @Component
+@Entity
+@Table(name = "developers")
 public class Developer {
-
-    private Integer idDeveloper;
-
+    @Id
+    @Column(name = "id_developers")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idDeveloper; //id_developer
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "phone")
     private String phone;
-
-    private Firm firm = new Firm();
-
+    @ManyToOne
+    @JoinColumn(name = "firm_id", nullable = false)
+    private Firm firm;
+    @ManyToMany
+    @JoinTable(
+            name = "developers_skills",
+            joinColumns = @JoinColumn(name = "developer_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<Skill>skillSet;
 
     public Developer() {

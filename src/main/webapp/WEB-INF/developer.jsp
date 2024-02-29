@@ -15,8 +15,10 @@
 
 <h2>Developer ${dev.name} ${dev.phone}</h2>
 <h3>Firm name: <c:out value="${dev.firm.name}"/></h3>
-
-
+<h3>Skills</h3>
+<c:forEach var="skill" items="${skills}">
+    <c:out value="${skill.name}"/> <br>
+</c:forEach>
 
 
 </body>

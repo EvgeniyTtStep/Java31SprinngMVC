@@ -3,12 +3,14 @@ package org.itstep.controller;
 import org.itstep.dao.hibernate.DeveloperHibernate;
 import org.itstep.dao.hibernate.FirmHibernate;
 import org.itstep.model.Developer;
+import org.itstep.model.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class DeveloperController {
@@ -55,7 +57,9 @@ public class DeveloperController {
     @GetMapping("/single/developer/{phone}")
     public String getOne(@PathVariable String phone, Model model) {
         Developer byPhone = developerHibernate.getByPhone(phone);
+        Set<Skill> skillSet = byPhone.getSkillSet();
         model.addAttribute("dev", byPhone);
+        model.addAttribute("skills", skillSet);
         System.out.println("Developer: " + byPhone.getName() + " " + byPhone.getPhone() + " " + byPhone.getFirm().getName());
         return "developer";
     }

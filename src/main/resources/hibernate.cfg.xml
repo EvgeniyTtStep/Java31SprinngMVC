@@ -22,9 +22,13 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!--property name="dialect">org.hibernate.dialect.MySQLDialect</property-->
-         <mapping resource="developer.hbm.xml"/>
-         <mapping resource="firm.hbm.xml"/>
-         <mapping resource="skill.hbm.xml"/>
+<!--         <mapping resource="developer.hbm.xml"/>-->
+<!--         <mapping resource="firm.hbm.xml"/>-->
+<!--         <mapping resource="skill.hbm.xml"/>-->
+
+        <mapping class="org.itstep.model.Developer"/>
+        <mapping class="org.itstep.model.Firm"/>
+        <mapping class="org.itstep.model.Skill"/>
 
     </session-factory>
 </hibernate-configuration>

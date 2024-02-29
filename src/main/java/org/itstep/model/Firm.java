@@ -2,16 +2,23 @@ package org.itstep.model;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
+@Entity
+@Table(name = "firms")
 public class Firm {
 
+    @Id
+    @Column(name = "id_firm")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idFirm;
 
     private String name;
 
+    @OneToMany(mappedBy = "firm", fetch = FetchType.EAGER)
     private Set<Developer> developers = new HashSet<>();
 
     public Firm() {
