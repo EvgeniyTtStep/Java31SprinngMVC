@@ -48,7 +48,15 @@ public class DeveloperHibernate implements BaseEntity<Developer, Integer> {
         return null;
     }
 
+
+
     public Developer getByPhone(String phone) {
+        for (Developer developer : getAll()) {
+            if (developer.getPhone().equals(phone)) {
+                return developer;
+            }
+        }
         return null;
     }
+
 }

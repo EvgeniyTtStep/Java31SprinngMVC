@@ -1,5 +1,10 @@
 package org.itstep.model;
 
+import org.springframework.stereotype.Component;
+
+import java.util.Set;
+
+@Component
 public class Developer {
 
     private Integer idDeveloper;
@@ -7,6 +12,10 @@ public class Developer {
     private String name;
 
     private String phone;
+
+    private Firm firm = new Firm();
+
+    private Set<Skill>skillSet;
 
     public Developer() {
     }
@@ -16,10 +25,26 @@ public class Developer {
         this.phone = phone;
     }
 
+    public Set<Skill> getSkillSet() {
+        return skillSet;
+    }
+
+    public void setSkillSet(Set<Skill> skillSet) {
+        this.skillSet = skillSet;
+    }
+
     public Developer(Integer idDeveloper, String name, String phone) {
         this.idDeveloper = idDeveloper;
         this.name = name;
         this.phone = phone;
+    }
+
+    public Firm getFirm() {
+        return firm;
+    }
+
+    public void setFirm(Firm firm) {
+        this.firm = firm;
     }
 
     public Integer getIdDeveloper() {

@@ -24,6 +24,13 @@
 
 <br>
 
+<c:forEach var="firm" items="${firms}">
+    <div>${firm.name} <a href="/single/firm/${firm.idFirm}">firm</a></div>
+</c:forEach>
+
+
+<br>
+
 <a href="/developer/form">Add developer</a>
 
 </body>

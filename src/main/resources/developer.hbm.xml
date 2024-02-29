@@ -14,5 +14,14 @@
         <property name = "name" column = "name" type = "string"/>
         <property name = "phone" column = "phone" type = "string"/>
 
+        <many-to-one name="firm" class="org.itstep.model.Firm">
+            <column name="firm_id"/>
+        </many-to-one>
+
+        <set name="skillSet" table="developers_skills" lazy="false">
+            <key column="developer_id"/>
+            <many-to-many column="skill_id" class="org.itstep.model.Skill"/>
+        </set>
+
     </class>
 </hibernate-mapping>

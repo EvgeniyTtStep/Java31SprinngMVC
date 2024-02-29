@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "org.itstep.model.Firm" table = "firms">
+
+
+        <id name = "idFirm" type = "int" column = "id_firm">
+            <generator class="identity"/>
+        </id>
+
+        <property name = "name" column = "name" type = "string"/>
+
+        <set name="developers" table="developers" lazy="false">
+            <key column="firm_id"/>
+            <one-to-many class="org.itstep.model.Developer"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

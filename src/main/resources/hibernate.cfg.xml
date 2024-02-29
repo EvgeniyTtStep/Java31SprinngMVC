@@ -23,5 +23,8 @@
 
         <!--property name="dialect">org.hibernate.dialect.MySQLDialect</property-->
          <mapping resource="developer.hbm.xml"/>
+         <mapping resource="firm.hbm.xml"/>
+         <mapping resource="skill.hbm.xml"/>
+
     </session-factory>
 </hibernate-configuration>
