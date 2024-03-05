@@ -14,7 +14,10 @@
 <body>
 
 <h2>Developer ${dev.name} ${dev.phone}</h2>
-<h3>Firm name: <c:out value="${dev.firm.name}"/></h3>
+<c:if test="${dev.firm != null}">
+    <h3>Firm name:
+        <c:out value="${dev.firm.name}"/></h3>
+    </c:if>
 <h3>Skills</h3>
 <c:forEach var="skill" items="${skills}">
     <c:out value="${skill.name}"/> <br>

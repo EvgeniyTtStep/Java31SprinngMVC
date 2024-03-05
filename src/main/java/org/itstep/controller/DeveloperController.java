@@ -15,7 +15,6 @@ import java.util.Set;
 @Controller
 public class DeveloperController {
 
-
     private final DeveloperHibernate developerHibernate;
 
     private final FirmHibernate firmHibernate;
@@ -49,7 +48,16 @@ public class DeveloperController {
 
     @PostMapping("/developer/form")
     public String postDeveloperForm(@ModelAttribute Developer developer) {
-        developerHibernate.save(developer);
+        Developer developerById = null;
+        if (developer.getIdDeveloper() != null) {
+            developerById = developerHibernate.getById(developer.getIdDeveloper());
+        }
+
+        if (developerById == null) {
+            developerHibernate.save(developer);
+        } else {
+            developerHibernate.update(developer);
+        }
         return "redirect:/developers";
     }
 
@@ -60,8 +68,24 @@ public class DeveloperController {
         Set<Skill> skillSet = byPhone.getSkillSet();
         model.addAttribute("dev", byPhone);
         model.addAttribute("skills", skillSet);
-        System.out.println("Developer: " + byPhone.getName() + " " + byPhone.getPhone() + " " + byPhone.getFirm().getName());
+        if (byPhone.getFirm() != null) {
+            System.out.println("Developer: " + byPhone.getName() + " " + byPhone.getPhone() + " " + byPhone.getFirm().getName());
+        }
         return "developer";
     }
 
+
+    @GetMapping("/update/developer/{idDeveloper}")
+    public String update(@PathVariable(name = "idDeveloper") Integer idDeveloper, Model model) {
+        Developer developerById = developerHibernate.getById(idDeveloper);
+        System.out.println("Before update = " + developerById.getName() + " " + developerById.getPhone());
+        model.addAttribute("developer", developerById);
+        return "form";
+    }
+
+    @GetMapping("/delete/developer/{idDeveloper}")
+    public String delete(@PathVariable(name = "idDeveloper") Integer id) {
+        developerHibernate.delete(id);
+        return "redirect:/developers";
+    }
 }

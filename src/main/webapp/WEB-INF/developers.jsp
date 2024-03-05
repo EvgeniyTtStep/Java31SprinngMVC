@@ -12,15 +12,24 @@
     <title>Title</title>
 </head>
 <body>
+<table>
+        <c:forEach var="developer" items="${developers}">
 
-<c:forEach var="developer" items="${developers}">
-    <c:if test="${developer.phone.equals('333')}">
-        <div style="color: aqua">${developer.name} ${developer.phone} <a href="/single/developer/${developer.phone}">developer</a></div>
-    </c:if>
-    <c:if test="${!developer.phone.equals('333')}">
-        <div style="color: coral">${developer.name} ${developer.phone} <a href="/single/developer/${developer.phone}">developer</a></div>
-    </c:if>
-</c:forEach>
+                <c:if test="${developer.phone.equals('333')}">
+                    <div style="color: aqua">${developer.name} ${developer.phone}
+                        <a href="/single/developer/${developer.phone}">Info</a>
+                        <a href="/update/developer/${developer.idDeveloper}"> Update</a>
+                        <a href="/delete/developer/${developer.idDeveloper}"> Delete</a>
+                    </div>
+                </c:if>
+                <c:if test="${!developer.phone.equals('333')}">
+                    <div style="color: coral">${developer.name} ${developer.phone}
+                        <a href="/single/developer/${developer.phone}">Info</a>
+                        <a href="/update/developer/${developer.idDeveloper}"> Update</a>
+                        <a href="/delete/developer/${developer.idDeveloper}"> Delete</a>
+                    </div>
+                </c:if>
+        </c:forEach>
 
 <br>
 

@@ -18,7 +18,7 @@ public class Developer {
     @Column(name = "phone")
     private String phone;
     @ManyToOne
-    @JoinColumn(name = "firm_id", nullable = false)
+    @JoinColumn(name = "firm_id")
     private Firm firm;
     @ManyToMany
     @JoinTable(

@@ -2,13 +2,48 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-        <context:component-scan base-package="org.itstep"/>
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
 
+        <context:component-scan base-package="org.itstep"/>
 
         <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                 <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
                 <property name="prefix" value="/WEB-INF/"/>
                 <property name="suffix" value=".jsp"/>
         </bean>
+
+        <bean id="dataSource"
+              class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
+                <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/it_firm"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+        </bean>
+
+
+        <bean id="sessionFactory"
+              class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+                <property name="dataSource" ref="dataSource"/>
+                <property name="packagesToScan" value="org.itstep.model"/>
+                <property name="hibernateProperties">
+                        <props>
+                                <prop key="hibernate.hbm2ddl.auto">
+                                        update
+                                </prop>
+                                <prop key="hibernate.dialect">
+                                        org.hibernate.dialect.MySQL8Dialect
+                                </prop>
+                        </props>
+                </property>
+        </bean>
+
+
+        <bean id="transactionManager"
+              class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+                <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+
 </beans>
